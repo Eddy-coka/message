@@ -1,11 +1,8 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, set, 
-  collection, 
-  addDoc, 
-  serverTimestamp, 
-  query, push,
-  orderBy, 
-  onSnapshot ,onValue,DataSnapshot,get } from "firebase/database";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { getDatabase, update ,ref, set, collection, addDoc, serverTimestamp, query, push, orderBy, onSnapshot, onValue, get, DataSnapshot } from 'firebase/database';
+import { getStorage } from 'firebase/storage';  // Importation du service de stockage
+
 const firebaseConfig = {
   apiKey: "AIzaSyDPFYpCJ6b93w9JVnwF5YbNHtqCopMiY00",
   authDomain: "message-bdea3.firebaseapp.com",
@@ -16,7 +13,29 @@ const firebaseConfig = {
   measurementId: "G-81L674FE3G"
 };
 
+// Initialisation de l'application Firebase
 const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
 
-export { db, ref,get, set,DataSnapshot ,collection,push, addDoc,onValue, serverTimestamp, query, orderBy, onSnapshot  }
+// Initialisation des services nécessaires
+const db = getDatabase(app);
+const auth = getAuth(app);
+const storage = getStorage(app);  // Initialisation de Firebase Storage
+
+// Exportation des services pour utilisation dans d'autres fichiers
+export { 
+  db, 
+  ref, 
+  get, 
+  set, 
+  DataSnapshot, 
+  collection, 
+  push, 
+  addDoc, 
+  onValue, 
+  serverTimestamp, 
+  query, 
+  orderBy, 
+  onSnapshot, 
+  storage, 
+  auth ,update 
+};
